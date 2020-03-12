@@ -40,6 +40,7 @@ console.log(reverseString(x));
 3. Modify the Object obj such that obj.getA().getB() prints both the console logs.
 
 ```js
+//obj.getA().getB() should print both the console.logs
 const obj = {
   a: 1,
   b: 2,
