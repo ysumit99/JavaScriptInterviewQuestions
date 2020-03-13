@@ -74,3 +74,27 @@ Array.prototype.print = function() {
   console.log(this.join(","));
 };
 ```
+
+5. Captitalize first letter of Each word in a String
+
+```js
+//example: joHN dOe => John Doe
+
+//Solution 1
+let name = "joHN dOe";
+
+name
+  .split(" ")
+  .map(ele => ele[0].toUpperCase() + ele.substr(1).toLowerCase())
+  .join(" ");
+
+//Solution 2
+String.prototype.capitalizeFirst = function() {
+  console.log(
+    this.split(" ")
+      .map(ele => ele[0].toUpperCase() + ele.substr(1).toLowerCase())
+      .join(" ")
+  );
+};
+name.capitalizeFirst();
+```
