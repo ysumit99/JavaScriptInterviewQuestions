@@ -159,3 +159,104 @@ var object1 = { key: "value" },
   object2 = { key: "value" };
 object1 === object2; //false
 ```
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators[](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)
+
+8. Difference between 'let' and 'const' ?
+
+1) let variables can be reinitialized with a different value but const variables cannot be reinitialized.
+2) const variables need to be declared using an initializer. Otherwise it gives error. let variables can remain uninitialized.
+
+```js
+
+  let k = 10;
+  console.log(k); //10
+
+  k = 12;
+  console.log(k); //12
+
+
+  const k = 10;
+  console.log(k); //10
+
+  k = 12; //TypeError: Assignment to constant variable.
+  console.log(k);
+
+
+
+  let i;
+  console.log(i); //undefined
+
+  const j; //SyntaxError: Missing initializer in const declaration
+  console.log(j);
+
+
+
+  //If its not a primitive value we can modify the values even for const
+
+  const d = [1, 2, 3];
+  d.push(4);
+  console.log(d); //This is OK
+
+  const c = [1,2];
+  c = [1, 2, 3]; //Assignment to constant variable.
+  console.log(c);
+
+```
+
+9. Difference between 'null' and 'undefined' ?
+
+1) When we declare a variable but not assign a value, JavaScript implicitly assigns 'undefined'.
+2) typeof(null) => object whereas typeof(undefined) => undefined
+
+10. What is the use of arrow functions ?
+
+1) Arrow functions (often referred to as fat arrow functions or lambda functions) are a concise way of writing functions that do not rebind context ( this ) within other functions. Their short syntax is further enhanced by their ability to return values implicitly in one line, single return functions.
+
+2) **arguments** parameter is not present for fat arrow functions. Instead we have rest parameter (...)
+
+```js
+
+  const profile = {
+    firstName: '',
+    lastName: '';
+    setName: function(name){
+      let splitName = function(n){
+        let nameArray = n.split(' ');
+        this.firstName = nameArray[0]; //this refers to setName function and not profile object.
+        this.lastName = nameArray[1]; //this refers to setName function and not profile object.
+      }
+
+      splitName(name);
+    }
+
+  }
+
+  profile.setName('john doe');
+  console.log(profile.firstName); //This returns empty string. Expected: john
+
+  //Reason being splitName is an inner function. the statement this.firstName doesn't refer the firstName of profile object rather it refers to the window object(parent).
+  //Using arrow function solves this problem
+
+  const profile = {
+    firstName: '',
+    lastName: '';
+    setName: function(name){
+
+      //splitName is changed to arrow function.
+      let splitName = (n) => {
+        let nameArray = n.split(' ');
+        this.firstName = nameArray[0]; //this refers the profile object correctly
+        this.lastName = nameArray[1]; //this refers the profile object correctly
+      }
+
+      splitName(name);
+    }
+
+  }
+
+  profile.setName('john doe');
+  console.log(profile.firstName); //john
+
+
+```
