@@ -260,3 +260,45 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comp
 
 
 ```
+
+11. Given below array of objects. Find the total score.
+
+```js
+let arr = [
+  { title: "A", score: 1 },
+  { title: "B", score: 12 },
+  { title: "C", score: 9 },
+  { title: "D", score: 5 }
+];
+
+arr.reduce((accumulator, currentVal) => {
+  return accumulator + currentVal.score;
+}, 0);
+```
+
+12. console.log([] + [])
+
+```js
+/* output => "" (empty string)
+  '+' operator makes the two operands typecast to string. ""(empty string) + ""(empty string) = ""(empty string)
+  */
+```
+
+13.
+
+```js
+function a() {
+  return "hello";
+}
+
+const sentence = a`hi`;
+console.log(sentence);
+
+//hello
+
+//Explanation
+
+/* 
+const sentence = a `hi`; => This is an example of tagged template string. Here `hi` is passed as an argument to the function 'a'.
+ */
+```
